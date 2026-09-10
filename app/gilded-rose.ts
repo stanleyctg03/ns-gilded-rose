@@ -10,6 +10,8 @@ export class Item {
     }
 }
 
+const SULFURAS_DESCRIPTION = 'Sulfuras, Hand of Ragnaros';
+
 export class GildedRose {
     items: Array<Item>;
 
@@ -23,7 +25,8 @@ export class GildedRose {
             let itemSellIn = this.items[i].sellIn;
             let itemQuality = this.items[i].quality;
 
-            let isSulfares = itemName === 'Sulfuras, Hand of Ragnaros';
+            // Extract constant to remove noise
+            let isSulfares = itemName === SULFURAS_DESCRIPTION;
             let isAgedBrie = itemName === 'Aged Brie';
             let isBackstage = itemName === 'Backstage passes to a TAFKAL80ETC concert';
             let isConjured = itemName === 'Conjured';
@@ -33,6 +36,7 @@ export class GildedRose {
                 itemSellIn -= 1;
             }
 
+            // Use helper function to improve readibility and reduce messiness
             if (isCommonItem) {
                 if (itemSellIn < 0) {
                     itemQuality -= 2;
@@ -40,14 +44,7 @@ export class GildedRose {
                     itemQuality -= 1;
                 }
             } else if (isBackstage) {
-                if (itemSellIn < 6) {
-                    itemQuality += 3;
-                } else if (itemSellIn < 11) {
-                    itemQuality += 2;
-                }
-                if (itemSellIn < 0) {
-                    itemQuality = 0;
-                }
+                itemQuality = getUpdatedBackstageQuality(itemSellIn, itemQuality);
             } else if (isAgedBrie) {
                 if (itemSellIn < 0) {
                     itemQuality += 2;
@@ -75,3 +72,16 @@ export class GildedRose {
         return this.items;
     }
 }
+
+function getUpdatedBackstageQuality(itemSellIn: number, itemQuality: number) {
+    if (itemSellIn < 6) {
+        itemQuality += 3;
+    } else if (itemSellIn < 11) {
+        itemQuality += 2;
+    }
+    if (itemSellIn < 0) {
+        itemQuality = 0;
+    }
+    return itemQuality;
+}
+

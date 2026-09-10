@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { Item, GildedRose } from '../app/gilded-rose';
 
+// Should do some parameterized testing to add more coverage
 describe('Gilded Rose', function () {
 
     it('should foo', function() {
@@ -48,6 +49,7 @@ describe('Gilded Rose', function () {
         expect(updatedItems[1].quality).to.equal(50);    
     });
 
+    // Should split into 3 different parts, that is why its so descriptive
     it('should increase in quality by 2 when there are 10 days or less and by 3 when its 5 then goes to 0 after concert for backstage pass', function () {
         const items = [new Item('Backstage passes to a TAFKAL80ETC concert', 10, 25), 
             new Item('Backstage passes to a TAFKAL80ETC concert', 5, 14),

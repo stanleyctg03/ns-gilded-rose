@@ -25,8 +25,9 @@ export class GildedRose {
 
             let isSulfares = itemName === 'Sulfuras, Hand of Ragnaros';
             let isAgedBrie = itemName === 'Aged Brie';
-            let isBackstage = itemName === 'Backstage passes to a TAFKAL80ETC concert'
-            let isCommonItem = !isAgedBrie && !isBackstage && !isSulfares;
+            let isBackstage = itemName === 'Backstage passes to a TAFKAL80ETC concert';
+            let isConjured = itemName === 'Conjured';
+            let isCommonItem = !isAgedBrie && !isBackstage && !isSulfares && !isConjured;
 
             if (!isSulfares) {
                 itemSellIn -= 1;
@@ -52,6 +53,12 @@ export class GildedRose {
                     itemQuality += 2;
                 } else {
                     itemQuality += 1;
+                }
+            } else if (isConjured) {
+                if (itemSellIn < 0) {
+                    itemQuality -= 4;
+                } else {
+                    itemQuality -= 2;
                 }
             }
             

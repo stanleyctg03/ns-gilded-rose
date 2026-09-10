@@ -57,6 +57,13 @@ describe('Gilded Rose', function () {
         expect(updatedItems[0].quality).to.equal(27);
         expect(updatedItems[1].quality).to.equal(17); 
         expect(updatedItems[2].quality).to.equal(0);  
-    })
+    });
 
+    it('should degrade twice as fast as normal items', function () {
+        const items = [new Item('Conjured', 12, 32), new Item('Conjured', 0, 32)];
+        const gildedRose = new GildedRose(items);
+        const updatedItems = gildedRose.updateQuality();
+        expect(updatedItems[0].quality).to.equal(30);
+        expect(updatedItems[1].quality).to.equal(28);
+    })
 });

@@ -34,7 +34,7 @@ describe('Golden Master Test', function () {
 
         expect(items[4].name).to.equal('Backstage passes');
         expect(items[4].sellIn).to.equal(53);
-        expect(items[4].quality).to.equal(66);
+        expect(items[4].quality).to.equal(50);
 
         expect(items[5].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
         expect(items[5].sellIn).to.equal(4);

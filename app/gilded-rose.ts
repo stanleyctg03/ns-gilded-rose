@@ -26,40 +26,39 @@ export class GildedRose {
             let isSulfares = itemName === 'Sulfuras, Hand of Ragnaros';
             let isAgedBrie = itemName === 'Aged Brie';
             let isBackstage = itemName === 'Backstage passes to a TAFKAL80ETC concert'
+            let isCommonItem = !isAgedBrie && !isBackstage && !isSulfares;
 
-            if (!isAgedBrie && !isBackstage && !isSulfares) {
-                if (itemQuality > 0) {
-                    itemQuality -=1;
-                }
+            if (!isSulfares) {
                 itemSellIn -= 1;
+            }
+
+            if (isCommonItem) {
                 if (itemSellIn < 0) {
-                    if (itemQuality > 0) {
-                        itemQuality -= 1;
-                    }
+                    itemQuality -= 2;
+                } else {
+                    itemQuality -= 1;
                 }
             } else if (isBackstage) {
-                if (itemQuality < 50) {
-                    itemQuality += 1
-                }
-                itemSellIn -= 1;
-                if (itemQuality < 50) {
-                    if (itemSellIn < 6) {
-                        itemQuality += 2;
-                    } else if (itemSellIn < 11) {
-                        itemQuality += 1;
-                    } 
+                if (itemSellIn < 6) {
+                    itemQuality += 3;
+                } else if (itemSellIn < 11) {
+                    itemQuality += 2;
                 }
                 if (itemSellIn < 0) {
                     itemQuality = 0;
                 }
-            }  else if (isAgedBrie) {
-                if (itemQuality < 50) {
+            } else if (isAgedBrie) {
+                if (itemSellIn < 0) {
+                    itemQuality += 2;
+                } else {
                     itemQuality += 1;
                 }
-                itemSellIn -= 1
-                if (itemSellIn < 0 && itemQuality < 50) {
-                    itemQuality += 1;
-                }
+            }
+            
+            if (itemQuality < 0) {
+                itemQuality = 0;
+            } else if (itemQuality > 50) {
+                itemQuality = 50;
             }
 
             this.items[i].sellIn = itemSellIn;

@@ -1,0 +1,1 @@
+[{"name":"Apple","sellIn":9,"quality":19},{"name":"Aged Brie","sellIn":27,"quality":41},{"name":"Apple","sellIn":13,"quality":31},{"name":"Sulfaras","sellIn":98,"quality":38},{"name":"Backstage passes","sellIn":53,"quality":66},{"name":"Cake","sellIn":6,"quality":24},{"name":"Cake","sellIn":4,"quality":19},{"name":"Trash","sellIn":-3,"quality":-5}]

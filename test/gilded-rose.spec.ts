@@ -23,4 +23,12 @@ describe('Gilded Rose', function () {
         expect(updatedItems[0].quality).to.equal(20);
         expect(updatedItems[0].sellIn).to.equal(12);        
     });
+
+    it('should not be negative for quality', function () {
+        const items = [new Item('Apple', 12, 0), new Item('Apple', 0, 1)];
+        const gildedRose = new GildedRose(items);
+        const updatedItems = gildedRose.updateQuality();
+        expect(updatedItems[0].quality).to.equal(0);
+        expect(updatedItems[1].quality).to.equal(0);
+    })
 });

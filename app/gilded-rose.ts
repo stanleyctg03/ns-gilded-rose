@@ -27,47 +27,38 @@ export class GildedRose {
             let isAgedBrie = itemName === 'Aged Brie';
             let isBackstage = itemName === 'Backstage passes to a TAFKAL80ETC concert'
 
-            if (!isAgedBrie && !isBackstage) {
+            if (!isAgedBrie && !isBackstage && !isSulfares) {
                 if (itemQuality > 0) {
-                    if (!isSulfares) {
+                    itemQuality -=1;
+                }
+                itemSellIn -= 1;
+                if (itemSellIn < 0) {
+                    if (itemQuality > 0) {
                         itemQuality -= 1;
                     }
                 }
-            } else {
+            } else if (isBackstage) {
                 if (itemQuality < 50) {
                     itemQuality += 1
-                    if (isBackstage) {
-                        if (itemSellIn < 11) {
-                            if (itemQuality < 50) {
-                                itemQuality += 1;
-                            }
-                        }
-                        if (itemSellIn < 6) {
-                            if (itemQuality < 50) {
-                                itemQuality += 1;
-                            }
-                        }
-                    }
                 }
-            }
-            if (!isSulfares) {
                 itemSellIn -= 1;
-            }
-            if (itemSellIn < 0) {
-                if (!isAgedBrie) {
-                    if (!isBackstage) {
-                        if (itemQuality > 0) {
-                            if (!isSulfares) {
-                                itemQuality -= 1;
-                            }
-                        }
-                    } else {
-                        itemQuality = 0;
-                    }
-                } else {
-                    if (itemQuality < 50) {
+                if (itemQuality < 50) {
+                    if (itemSellIn < 6) {
+                        itemQuality += 2;
+                    } else if (itemSellIn < 11) {
                         itemQuality += 1;
-                    }
+                    } 
+                }
+                if (itemSellIn < 0) {
+                    itemQuality = 0;
+                }
+            }  else if (isAgedBrie) {
+                if (itemQuality < 50) {
+                    itemQuality += 1;
+                }
+                itemSellIn -= 1
+                if (itemSellIn < 0 && itemQuality < 50) {
+                    itemQuality += 1;
                 }
             }
 

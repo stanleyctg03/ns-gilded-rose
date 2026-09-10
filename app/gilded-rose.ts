@@ -22,12 +22,15 @@ export class GildedRose {
             let itemName = this.items[i].name;
             let itemSellIn = this.items[i].sellIn;
             let itemQuality = this.items[i].quality;
-            let isSulfares = itemName === 'Sulfuras, Hand of Ragnaros';
 
-            if (itemName != 'Aged Brie' && itemName != 'Backstage passes to a TAFKAL80ETC concert') {
+            let isSulfares = itemName === 'Sulfuras, Hand of Ragnaros';
+            let isAgedBrie = itemName === 'Aged Brie';
+            let isBackstage = itemName === 'Backstage passes to a TAFKAL80ETC concert'
+
+            if (!isAgedBrie && !isBackstage) {
                 if (itemQuality > 0) {
                     if (!isSulfares) {
-                        itemQuality -= 1
+                        itemQuality -= 1;
                     }
                 }
             } else {
@@ -36,34 +39,34 @@ export class GildedRose {
                     if (itemName == 'Backstage passes to a TAFKAL80ETC concert') {
                         if (itemSellIn < 11) {
                             if (itemQuality < 50) {
-                                itemQuality += 1
+                                itemQuality += 1;
                             }
                         }
                         if (itemSellIn < 6) {
                             if (itemQuality < 50) {
-                                itemQuality += 1
+                                itemQuality += 1;
                             }
                         }
                     }
                 }
             }
-            if (itemName != 'Sulfuras, Hand of Ragnaros') {
+            if (!isSulfares) {
                 itemSellIn -= 1;
             }
             if (itemSellIn < 0) {
-                if (itemName != 'Aged Brie') {
-                    if (itemName != 'Backstage passes to a TAFKAL80ETC concert') {
+                if (!isAgedBrie) {
+                    if (!isBackstage) {
                         if (itemQuality > 0) {
                             if (!isSulfares) {
-                                itemQuality -= 1
+                                itemQuality -= 1;
                             }
                         }
                     } else {
-                        itemQuality = 0
+                        itemQuality = 0;
                     }
                 } else {
                     if (itemQuality < 50) {
-                        itemQuality += 1
+                        itemQuality += 1;
                     }
                 }
             }

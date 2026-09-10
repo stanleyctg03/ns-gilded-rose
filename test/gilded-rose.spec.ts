@@ -30,5 +30,22 @@ describe('Gilded Rose', function () {
         const updatedItems = gildedRose.updateQuality();
         expect(updatedItems[0].quality).to.equal(0);
         expect(updatedItems[1].quality).to.equal(0);
-    })
+    });
+
+    it('should increase in quality for Aged Brie as it gets older', function () {
+        const items = [new Item('Aged Brie', 20, 20)];
+        const gildedRose = new GildedRose(items);
+        const updatedItems = gildedRose.updateQuality();
+        expect(updatedItems[0].quality).to.equal(21);     
+    });
+
+    it('should not be more than 50 for quality', function () {
+        const items = [new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49), 
+            new Item('Backstage passes to a TAFKAL80ETC concert', 10, 50)];
+        const gildedRose = new GildedRose(items);
+        const updatedItems = gildedRose.updateQuality();
+        expect(updatedItems[0].quality).to.equal(50);
+        expect(updatedItems[1].quality).to.equal(50);    
+    });
+
 });

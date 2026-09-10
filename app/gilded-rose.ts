@@ -36,7 +36,7 @@ export class GildedRose {
             } else {
                 if (itemQuality < 50) {
                     itemQuality += 1
-                    if (itemName == 'Backstage passes to a TAFKAL80ETC concert') {
+                    if (isBackstage) {
                         if (itemSellIn < 11) {
                             if (itemQuality < 50) {
                                 itemQuality += 1;
